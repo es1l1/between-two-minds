@@ -4,429 +4,594 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090e1c">
-  <meta name="description" content="A little universe, made just for you.">
-  <title>Between Two Minds | إلكِ ❤️</title>
+  <meta name="theme-color" content="#090d1c">
+  <meta name="description" content="مساحة صغيرة، كُتبت بمحبة لنسومتي.">
+  <title>Only For My Love’s Eyes ♡</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap');
-
     :root {
-      --bg: #090e1c;
-      --panel: rgba(20, 29, 50, .76);
-      --gold: #dfc28b;
-      --gold-light: #f5e7c7;
-      --white: #f7f5f0;
-      --muted: #b0b8ca;
-      --border: rgba(223, 194, 139, .22);
+      --bg: #090d1c;
+      --bg-soft: #10172b;
+      --panel: rgba(21, 29, 50, .70);
+      --gold: #dfc18a;
+      --gold-light: #f2dfb8;
+      --rose: #dba4b7;
+      --text: #f8f2e9;
+      --muted: #b8bdcc;
+      --line: rgba(223, 193, 138, .20);
+      --serif: "Aref Ruqaa", serif;
+      --sans: "Cairo", sans-serif;
+      --english: "Playfair Display", serif;
     }
 
     * { box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 25px;
+      scroll-padding-top: 24px;
     }
 
     body {
       margin: 0;
       min-height: 100vh;
-      color: var(--white);
+      color: var(--text);
+      font-family: var(--sans);
       background:
-        radial-gradient(ellipse at 50% 0%, #1c2a48 0%, transparent 52%),
-        radial-gradient(ellipse at 100% 75%, #1b1930 0%, transparent 42%),
-        var(--bg);
-      font-family: "Cairo", sans-serif;
+        radial-gradient(ellipse at 15% 10%, rgba(94, 78, 137, .18), transparent 36%),
+        radial-gradient(ellipse at 90% 50%, rgba(166, 111, 137, .10), transparent 34%),
+        linear-gradient(155deg, #090d1c, #10172b 52%, #090d1c);
       overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .20;
+      background-image: radial-gradient(rgba(242,223,184,.5) .7px, transparent .7px);
+      background-size: 37px 37px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
     }
 
     button { font: inherit; }
 
     button:focus-visible, a:focus-visible {
-      outline: 2px solid var(--gold);
+      outline: 2px solid var(--gold-light);
       outline-offset: 5px;
     }
 
-    #stars {
+    .stars {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
       pointer-events: none;
+      overflow: hidden;
       z-index: -1;
-      opacity: .7;
     }
 
-    .ambient {
-      position: fixed;
-      width: 280px;
-      height: 280px;
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
       border-radius: 50%;
-      background: rgba(110, 128, 190, .08);
-      filter: blur(70px);
-      pointer-events: none;
-      z-index: -1;
+      background: #f5e6c8;
+      opacity: .48;
+      animation: twinkle 4s ease-in-out infinite;
     }
 
-    .ambient.one { top: 15%; right: -170px; }
-    .ambient.two { bottom: 5%; left: -170px; }
+    @keyframes twinkle {
+      0%, 100% { opacity: .15; transform: scale(.8); }
+      50% { opacity: .8; transform: scale(1.5); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-9px); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .page {
-      width: min(100% - 32px, 760px);
-      margin-inline: auto;
+      width: min(100% - 30px, 850px);
+      margin: auto;
     }
 
     .topbar {
-      padding: 23px 0;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 12px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
     }
 
     .brand {
-      font-family: "Playfair Display", serif;
+      font-family: var(--english);
+      font-size: .88rem;
       color: var(--gold);
-      font-size: 14px;
-      letter-spacing: 1px;
+      letter-spacing: 1.4px;
       direction: ltr;
     }
 
-    .status {
+    .private-label {
+      font-size: .72rem;
       color: var(--muted);
-      font-size: 11px;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
     }
+
+    .private-label span { color: var(--rose); }
 
     .hero {
-      min-height: 78svh;
+      min-height: 79vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 42px 0 65px;
+      padding: 66px 0 78px;
+      animation: fadeUp 1s ease both;
     }
 
-    .orbit {
-      width: 100px;
-      height: 100px;
-      border: 1px solid rgba(223, 194, 139, .42);
-      border-radius: 50%;
+    .heart-orbit {
+      width: 106px;
+      height: 106px;
       display: grid;
       place-items: center;
       position: relative;
-      margin-bottom: 30px;
-      box-shadow: 0 0 65px rgba(223, 194, 139, .07);
+      margin-bottom: 28px;
+      animation: float 5s ease-in-out infinite;
     }
 
-    .orbit::before, .orbit::after {
+    .heart-orbit::before,
+    .heart-orbit::after {
       content: "";
       position: absolute;
-      border: 1px solid rgba(223, 194, 139, .18);
+      inset: 0;
+      border: 1px solid rgba(223,193,138,.30);
       border-radius: 50%;
     }
 
-    .orbit::before { inset: -11px; }
-    .orbit::after { inset: 12px; }
+    .heart-orbit::after {
+      inset: 10px;
+      border-color: rgba(219,164,183,.27);
+    }
 
     .heart {
-      color: var(--gold);
-      font-size: 29px;
-      animation: heartbeat 2.4s ease-in-out infinite;
+      font-size: 2.15rem;
+      color: var(--rose);
+      text-shadow: 0 0 28px rgba(219,164,183,.45);
     }
 
     .eyebrow {
       color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 3px;
-      margin-bottom: 13px;
-      direction: ltr;
+      font-size: .75rem;
+      letter-spacing: 2.4px;
+      margin: 0 0 12px;
     }
 
-    h1, h2, p { margin-top: 0; }
+    h1, h2, h3, p { margin-top: 0; }
 
-    h1 {
-      font-size: clamp(29px, 7vw, 48px);
-      line-height: 1.45;
-      margin-bottom: 8px;
+    .hero h1 {
+      font-family: var(--serif);
       font-weight: 700;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      line-height: 1.35;
+      margin: 0;
+      color: var(--gold-light);
+      text-shadow: 0 4px 35px rgba(223,193,138,.12);
     }
 
     .english-title {
-      color: var(--gold);
-      font-family: "Playfair Display", serif;
-      font-size: clamp(23px, 5.5vw, 38px);
-      font-weight: 500;
       direction: ltr;
-      margin-bottom: 25px;
+      font-family: var(--english);
+      font-size: clamp(1.08rem, 4vw, 1.55rem);
+      color: #e7d5b6;
+      margin: 13px 0 24px;
+      letter-spacing: .4px;
     }
 
-    .intro {
-      max-width: 450px;
+    .hero-message {
+      max-width: 610px;
+      font-family: var(--serif);
+      font-size: clamp(1.35rem, 4.5vw, 1.8rem);
+      line-height: 2;
+      color: #f1e9df;
+      margin: 0 auto 29px;
+    }
+
+    .hero-message em {
+      font-style: normal;
+      color: var(--rose);
+    }
+
+    .small-note {
       color: var(--muted);
-      font-size: 14px;
-      line-height: 2.1;
-      margin-bottom: 29px;
+      font-size: .78rem;
+      line-height: 1.9;
+      max-width: 410px;
+      margin: 0 auto 26px;
     }
 
-    .button {
+    .primary-btn, .music-btn, .text-btn {
+      border: 0;
       cursor: pointer;
-      border: 1px solid var(--gold);
-      border-radius: 100px;
-      padding: 13px 24px;
-      color: #141523;
-      background: linear-gradient(120deg, #f2dfb5, #c9a96b);
+      transition: transform .25s ease, background .25s ease, border-color .25s ease;
+    }
+
+    .primary-btn {
+      padding: 13px 26px;
+      border-radius: 999px;
+      color: #171423;
+      background: linear-gradient(120deg, #f1dfb8, #d8b57c);
+      box-shadow: 0 8px 28px rgba(223,193,138,.12);
+      font-size: .9rem;
       font-weight: 700;
-      font-size: 13px;
-      transition: transform .25s, box-shadow .25s;
-      box-shadow: 0 5px 35px rgba(223, 194, 139, .12);
     }
 
-    .button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 35px rgba(223, 194, 139, .24);
-    }
-
-    .button.secondary {
-      color: var(--gold-light);
-      background: transparent;
-      box-shadow: none;
-      padding: 10px 17px;
-    }
-
-    .scroll-note {
-      margin-top: 40px;
-      color: #7e8aa1;
-      font-size: 11px;
+    .primary-btn:hover, .music-btn:hover, .text-btn:hover {
+      transform: translateY(-3px);
     }
 
     .section {
-      padding: 46px 0;
-      scroll-margin-top: 25px;
+      padding: 54px 0;
+      border-top: 1px solid rgba(255,255,255,.07);
     }
 
-    .section-head {
+    .section-heading {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 28px;
     }
 
-    .section-head .eyebrow { margin-bottom: 8px; }
+    .section-heading .eyebrow { margin-bottom: 8px; }
 
-    h2 {
-      font-size: clamp(22px, 5vw, 30px);
-      margin-bottom: 9px;
+    .section-heading h2 {
+      font-family: var(--serif);
+      color: var(--gold-light);
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      margin: 0 0 9px;
     }
 
-    .section-sub {
+    .section-heading p {
       color: var(--muted);
-      font-size: 13px;
-      line-height: 2;
+      font-size: .83rem;
+      line-height: 1.9;
+      max-width: 520px;
+      margin: auto;
     }
 
     .letter {
-      padding: clamp(22px, 5vw, 38px);
-      background:
-        linear-gradient(145deg, rgba(29, 41, 67, .83), rgba(13, 19, 34, .88));
-      border: 1px solid var(--border);
-      border-radius: 22px;
       position: relative;
       overflow: hidden;
+      padding: clamp(24px, 6vw, 42px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(24,33,56,.82), rgba(16,21,39,.68));
+      box-shadow: 0 20px 70px rgba(0,0,0,.13);
     }
 
     .letter::before {
       content: "“";
       position: absolute;
-      top: -20px;
-      left: 15px;
-      color: rgba(223, 194, 139, .11);
-      font-family: Georgia, serif;
-      font-size: 150px;
+      top: -32px;
+      left: 18px;
+      font-family: var(--english);
+      font-size: 9rem;
       line-height: 1;
+      color: rgba(223,193,138,.09);
+      direction: ltr;
+    }
+
+    .letter-tag {
+      color: var(--rose);
+      font-size: .8rem;
+      margin-bottom: 16px;
     }
 
     .letter p {
       position: relative;
-      color: #e4e7ef;
-      font-size: 14px;
-      line-height: 2.35;
-      margin-bottom: 15px;
+      font-family: var(--serif);
+      font-size: clamp(1.35rem, 4.4vw, 1.72rem);
+      line-height: 2.05;
+      margin-bottom: 18px;
+      color: #f3ece3;
     }
 
-    .letter p:last-child { margin-bottom: 0; }
+    .letter p:last-of-type { margin-bottom: 0; }
 
     .signature {
-      color: var(--gold) !important;
-      margin-top: 25px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .memory-card {
-      min-height: 155px;
-      padding: 18px 12px;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      color: var(--white);
-      text-align: center;
-      cursor: pointer;
-      transition: border-color .25s, transform .25s, background .25s;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .memory-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-3px);
-    }
-
-    .memory-card .symbol {
-      font-size: 24px;
+    .signature span {
       color: var(--gold);
+      font-family: var(--serif);
+      font-size: 1.45rem;
     }
 
-    .memory-card strong {
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .memory-card small {
+    .signature small {
       color: var(--muted);
-      font-size: 10px;
+      font-size: .72rem;
     }
 
-    .memory-card .reveal {
+    .messages-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .message-card {
+      position: relative;
+      text-align: right;
+      border: 1px solid rgba(223,193,138,.17);
+      background: linear-gradient(145deg, rgba(26,35,59,.78), rgba(15,21,39,.72));
+      color: var(--text);
+      padding: 19px 17px;
+      border-radius: 19px;
+      cursor: pointer;
+      min-height: 137px;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .message-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(223,193,138,.5);
+      background: rgba(34,42,66,.9);
+    }
+
+    .card-icon {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 11px;
+    }
+
+    .card-title {
+      display: block;
+      font-weight: 700;
+      font-size: .92rem;
+      line-height: 1.8;
+      margin-bottom: 5px;
+    }
+
+    .card-hint {
+      display: block;
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+    .message-card::after {
+      content: "＋";
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      color: var(--gold);
+      font-size: .9rem;
+    }
+
+    .message-card[aria-expanded="true"]::after { content: "−"; }
+
+    .message-content {
       display: none;
-      color: var(--gold-light);
-      font-size: 12px;
-      line-height: 1.9;
-      font-weight: 400;
+      margin-top: 15px;
+      padding-top: 13px;
+      border-top: 1px solid var(--line);
+      color: #f0e7dc;
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      line-height: 1.95;
+      animation: fadeUp .35s ease both;
     }
 
-    .memory-card.open .symbol,
-    .memory-card.open strong,
-    .memory-card.open small { display: none; }
+    .message-card[aria-expanded="true"] .message-content { display: block; }
 
-    .memory-card.open .reveal { display: block; }
+    .message-card[aria-expanded="true"] .card-hint { display: none; }
 
     .quote-box {
       text-align: center;
-      padding: 35px 20px;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      padding: 30px 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(219,164,183,.19);
+      background: linear-gradient(135deg, rgba(65,44,70,.18), rgba(20,27,48,.6));
     }
 
-    .quote-box .big-heart {
-      color: var(--gold);
-      font-size: 25px;
-      margin-bottom: 13px;
+    .quote-box .quote-heart {
+      font-size: 1.5rem;
+      color: var(--rose);
+      margin-bottom: 10px;
     }
 
     .quote-box p {
-      color: var(--gold-light);
-      font-size: 17px;
-      line-height: 2.1;
-      margin-bottom: 8px;
+      font-family: var(--serif);
+      font-size: clamp(1.45rem, 4.5vw, 1.85rem);
+      line-height: 2;
+      margin: 0;
     }
 
     .quote-box small {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .finale {
-      padding: 70px 0 55px;
-      text-align: center;
-    }
-
-    .finale h2 {
-      color: var(--gold-light);
-      font-size: clamp(25px, 6vw, 36px);
-      line-height: 1.6;
-    }
-
-    .finale p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 2.3;
-      max-width: 460px;
-      margin: 0 auto 23px;
-    }
-
-    .signature-line {
-      font-family: "Playfair Display", serif;
+      display: block;
       color: var(--gold);
-      direction: ltr;
-      font-size: 17px;
+      margin-top: 17px;
+      font-size: .78rem;
     }
 
-    footer {
-      padding: 22px 0 35px;
+    .final-section {
       text-align: center;
-      border-top: 1px solid rgba(223, 194, 139, .12);
-      color: #7e8aa1;
-      font-size: 10px;
+      padding: 65px 0 42px;
+    }
+
+    .final-section .ornament {
+      color: var(--gold);
+      letter-spacing: 10px;
+      margin-bottom: 18px;
+      direction: ltr;
+    }
+
+    .final-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.1rem, 7vw, 3.1rem);
+      color: var(--gold-light);
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .final-letter {
+      font-family: var(--serif);
+      font-size: clamp(1.35rem, 4.3vw, 1.7rem);
+      line-height: 2.1;
+      max-width: 680px;
+      margin: 0 auto;
+      color: #f2e9df;
+    }
+
+    .final-letter strong {
+      display: block;
+      color: var(--rose);
+      font-weight: 400;
+      margin-top: 20px;
+    }
+
+    .final-signature {
+      margin-top: 30px;
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 1.8rem;
+    }
+
+    .final-subtitle {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: .72rem;
+      direction: ltr;
+      font-family: var(--english);
+      letter-spacing: 1px;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding: 23px 0 32px;
+      text-align: center;
+      color: #9098ac;
+      font-size: .7rem;
       line-height: 2;
+    }
+
+    .footer .footer-heart { color: var(--rose); }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -30px;
+      z-index: 20;
+      pointer-events: none;
+      animation: rise 3.8s ease-in forwards;
+      color: var(--rose);
+      text-shadow: 0 0 14px rgba(219,164,183,.4);
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(.7) rotate(0); opacity: 0; }
+      15% { opacity: .8; }
+      100% { transform: translateY(-105vh) scale(1.35) rotate(24deg); opacity: 0; }
     }
 
     .music-control {
       position: fixed;
+      bottom: 17px;
       left: 15px;
-      bottom: 15px;
-      z-index: 5;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      background: rgba(12, 18, 33, .94);
+      z-index: 30;
+    }
+
+    .music-btn {
+      background: rgba(16,23,43,.88);
       color: var(--gold-light);
-      padding: 10px 14px;
-      cursor: pointer;
-      font-size: 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-size: .75rem;
       backdrop-filter: blur(12px);
     }
 
-    .hidden {
-      display: none !important;
+    .music-btn span { margin-left: 5px; }
+
+    .back-top {
+      display: block;
+      width: fit-content;
+      margin: 26px auto 0;
+      color: var(--gold);
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 18px;
+      cursor: pointer;
+      font-size: .78rem;
     }
 
-    .fade-in {
-      animation: fadeIn .9s ease both;
+    .toast {
+      position: fixed;
+      bottom: 75px;
+      left: 50%;
+      transform: translateX(-50%) translateY(12px);
+      background: #1a2237;
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 15px;
+      font-size: .78rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s ease;
+      z-index: 40;
+      width: max-content;
+      max-width: calc(100% - 35px);
+      text-align: center;
     }
 
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.13); }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(13px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .hidden { display: none; }
 
-    @media (max-width: 480px) {
-      .page { width: calc(100% - 28px); }
-      .hero { min-height: 76svh; }
-      .cards { grid-template-columns: 1fr; }
-      .memory-card { min-height: 110px; }
-      .memory-card.open { min-height: 125px; }
-      .topbar { padding-top: 18px; }
-      .letter p { font-size: 13px; }
+    @media (max-width: 520px) {
+      .page { width: min(100% - 24px, 850px); }
+      .topbar { padding: 17px 0; }
+      .brand { font-size: .75rem; letter-spacing: .8px; }
+      .private-label { font-size: .65rem; }
+      .hero { min-height: 78svh; padding: 52px 0 58px; }
+      .heart-orbit { width: 88px; height: 88px; }
+      .section { padding: 43px 0; }
+      .messages-grid { grid-template-columns: 1fr; gap: 10px; }
+      .message-card { min-height: 112px; padding: 16px; }
+      .message-card .card-icon { display: inline-block; margin: 0 0 0 8px; vertical-align: middle; }
+      .card-title { display: inline; }
+      .card-hint { margin-top: 7px; }
+      .message-content { font-size: 1.2rem; }
+      .letter { border-radius: 19px; }
+      .music-control { bottom: 12px; left: 10px; }
+      .music-btn { padding: 9px 12px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
+        scroll-behavior: auto !important;
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
         transition-duration: .01ms !important;
       }
     }
@@ -434,311 +599,382 @@
 </head>
 
 <body>
-  <canvas id="stars" aria-hidden="true"></canvas>
-  <div class="ambient one"></div>
-  <div class="ambient two"></div>
+  <div class="stars" id="stars" aria-hidden="true"></div>
 
-  <div class="page">
-    <header class="topbar">
-      <div class="brand">BETWEEN TWO MINDS</div>
-      <div class="status">A little universe for you ♡</div>
-    </header>
+  <header class="page topbar">
+    <div class="brand">ONLY FOR MY LOVE’S EYES</div>
+    <div class="private-label"><span>♡</span> مساحة صغيرة لنسومتي</div>
+  </header>
 
-    <main>
-      <section class="hero">
-        <div class="orbit">
-          <span class="heart">♡</span>
-        </div>
+  <main>
+    <!-- شاشة الترحيب -->
+    <section class="page hero" id="home">
+      <div class="heart-orbit" aria-hidden="true">
+        <span class="heart">♡</span>
+      </div>
 
-        <div class="eyebrow">A LITTLE SOMETHING FOR YOU</div>
+      <p class="eyebrow">A LITTLE UNIVERSE, MADE FOR YOU</p>
+      <h1>نورتي مكانك<br>يا روح القلب</h1>
+      <p class="english-title">Only For My Love’s Eyes</p>
 
-        <h1>إلكِ، من عالمي لعالمك</h1>
-        <div class="english-title">Between Two Minds</div>
+      <p class="hero-message">
+        يا أهلاً بضحكة أيامي.. مهما تغيّرت الأماكن
+        وبَعُدت المسافات، بتضلي إنتِ الأساس،
+        والأمان، والوجه اللي بس بشوفه بترتاح روحي.
+        <em>أهلاً فيكِ بمساحتك الخاصة يا نسومتي.</em>
+      </p>
 
-        <p class="intro">
-          في أشياء كثيرة بالحياة إلها تفسير منطقي،
-          وفي أشياء حلوة يكفي إننا نحسّ فيها.
-          هاي مساحة صغيرة صنعتها إلكِ.
-        </p>
+      <p class="small-note">
+        مش لازم يكون عندك سبب لتفتحي هالمكان؛
+        أحيانًا يكفي إنك تحتاجي كلمة حلوة، أو لحظة هدوء،
+        أو تذكير بسيط إنك غالية.
+      </p>
 
-        <button class="button" id="openLetter">
-          افتحي رسالتكِ ♡
-        </button>
+      <button class="primary-btn" id="enterBtn">
+        افتحي رسائلك يا نسومتي ♡
+      </button>
+    </section>
 
-        <div class="scroll-note">
-          صُنعت بتفاصيل صغيرة، ومعنى كبير
-          <div style="margin-top:10px">↓</div>
-        </div>
-      </section>
+    <!-- الرسالة الأساسية -->
+    <section class="page section" id="letter">
+      <div class="section-heading">
+        <p class="eyebrow">A LETTER FROM MY HEART</p>
+        <h2>إلكِ، من عالمي لعالمك</h2>
+        <p>في أشياء أحلى لما تنكتب بهدوء، وتوصل بوقتها.</p>
+      </div>
 
-      <section class="section hidden" id="letterSection">
-        <div class="section-head">
-          <div class="eyebrow">A MESSAGE FROM ME TO YOU</div>
-          <h2>كلمات من القلب</h2>
-          <p class="section-sub">
-            مش كل شيء حلو لازم يكون كبير حتى يترك أثرًا.
-          </p>
-        </div>
-
-        <article class="letter fade-in">
-          <p>
-            يمكن أنا بدرس علم البيانات والذكاء الاصطناعي،
-            وإنتِ خلصتي هندسة الحاسوب،
-            وكل واحد فينا عنده طريقه وأحلامه وعالمه الخاص.
-          </p>
-
-          <p>
-            بس في أشياء بحياتي ما بدي أختصرها بكود،
-            ولا أحاول أحسب قيمتها بالأرقام.
-            ومن بينها الشعور الحلو اللي بعيشه لما أفكر فيكِ.
-          </p>
-
-          <p>
-            عملتلك هالموقع بنفسي، مش لأنه أعظم مشروع
-            ممكن أعمله، لكن لأنه شيء من عالمي حبيت
-            أشارككِ إياه، وتكون إلكِ فيه مساحة خاصة.
-          </p>
-
-          <p>
-            ومع إن الأيام ممكن تاخذ كل واحد فينا
-            لمكان مختلف، بتمنى تظل أيامكِ حلوة،
-            وخطواتكِ مباركة، وأحلامكِ أقرب إلكِ
-            مع كل يوم جديد.
-          </p>
-
-          <p class="signature">
-            إلكِ، بكل الود اللي ما بتكفيه الكلمات. ♡
-          </p>
-        </article>
-      </section>
-
-      <section class="section hidden" id="memoriesSection">
-        <div class="section-head">
-          <div class="eyebrow">A FEW LITTLE REMINDERS</div>
-          <h2>افتحي كل رسالة</h2>
-          <p class="section-sub">
-            ثلاث كلمات صغيرة، وكل وحدة إلها معنى.
-          </p>
-        </div>
-
-        <div class="cards">
-          <button class="memory-card" type="button" aria-expanded="false">
-            <span class="symbol">✦</span>
-            <strong>الأمنية الأولى</strong>
-            <small>اضغطي لتكتشفيها</small>
-            <span class="reveal">
-              أتمنى أيامكِ الجاية تكون أهدى،
-              وأحلى، ومليانة أشياء بتفرّح قلبكِ.
-            </span>
-          </button>
-
-          <button class="memory-card" type="button" aria-expanded="false">
-            <span class="symbol">♡</span>
-            <strong>الأمنية الثانية</strong>
-            <small>اضغطي لتكتشفيها</small>
-            <span class="reveal">
-              لا تنسي أحلامكِ الكبيرة،
-              ولا تستهيني بأي خطوة صغيرة بتقرّبكِ منها.
-            </span>
-          </button>
-
-          <button class="memory-card" type="button" aria-expanded="false">
-            <span class="symbol">∞</span>
-            <strong>الأمنية الثالثة</strong>
-            <small>اضغطي لتكتشفيها</small>
-            <span class="reveal">
-              وين ما تكوني، أتمنى تلاقي الخير
-              والراحة والناس اللي يقدّروا قلبكِ.
-            </span>
-          </button>
-        </div>
-      </section>
-
-      <section class="section hidden" id="quoteSection">
-        <div class="quote-box">
-          <div class="big-heart">♡</div>
-          <p>
-            مش لازم تكون كل الطرق متشابهة،
-            حتى تكون بعض اللقاءات جميلة.
-          </p>
-          <small>One little page. A thousand feelings.</small>
-        </div>
-      </section>
-
-      <section class="finale hidden" id="finalSection">
-        <div class="eyebrow">UNTIL THE NEXT CHAPTER</div>
-
-        <h2>إلى أن نلتقي من جديد</h2>
+      <article class="letter">
+        <div class="letter-tag">إلى نسومتي، بكل الودّ اللي بقلبي ♡</div>
 
         <p>
-          بتمنى لكِ بداية حلوة، وأيامًا تحمل لكِ
-          أكثر مما تتمنين.
-          خلي هالصفحة ذكرى لطيفة تفتحيها
-          وقت ما تحبي، وتذكّركِ بالأشياء الحلوة.
+          يا تسنيم، يا صاحبة الروح اللي إلها مكانتها الخاصة،
+          حبيت أتركلك هالمساحة؛ مكان صغير يجمع كم كلمة
+          يمكن ما تكفي كل اللي بخاطري، بس يمكن ترسم على
+          وجهك ابتسامة ولو بسيطة.
         </p>
 
-        <div class="signature-line">Made with love & a little bit of code.</div>
+        <p>
+          بعرف إن الأيام الجاية فيها تغييرات وخطوات جديدة،
+          ويمكن فيها لحظات حماس ولحظات اشتياق وتعب.
+          بس بتمنى من قلبي إنك تعيشي كل يوم فيها وأنتِ
+          مطمئنة، واثقة بنفسك، ومتصالحة مع الطريق اللي اخترتيه.
+        </p>
 
-        <div style="margin-top:25px">
-          <button class="button secondary" id="replay">
-            نعيد الحكاية من البداية ↺
-          </button>
+        <p>
+          أكثر إشي بتمناه إلك إنك تظلي نسومتي اللي بعرفها:
+          بروحك الحلوة، بعقلك، بطموحك، وبطريقتك اللي بتخلي
+          للأشياء العادية معنى مختلف. لا تستصغري إنجازاتك،
+          ولا تنسي إنك وصلتي لهون بتعبك واجتهادك.
+        </p>
+
+        <p>
+          وإذا صار بيننا بُعد بالمكان، بتمنى يظل بيننا قرب
+          بالكلمة الطيبة، بالسؤال الصادق، وبالدعوة الحلوة
+          اللي بتنقال من القلب من غير ما تحتاج تنسمع.
+        </p>
+
+        <div class="signature">
+          <span>إلكِ بمحبة وهدوء ♡</span>
+          <small>Between Two Minds · Two worlds, one little space</small>
         </div>
-      </section>
-    </main>
+      </article>
+    </section>
 
-    <footer>
-      A small creation from one world to another ♡
-      <br>
-      Built with HTML, CSS & JavaScript.
-    </footer>
+    <!-- رسائل الأيام القادمة -->
+    <section class="page section" id="messages">
+      <div class="section-heading">
+        <p class="eyebrow">OPEN WHEN YOU NEED A LITTLE LOVE</p>
+        <h2>رسائل الأيام القادمة</h2>
+        <p>
+          اختاري الرسالة اللي بتشبه شعورك هاللحظة.
+          كل باب صغير هون، وراه كلمة إلك.
+        </p>
+      </div>
+
+      <div class="messages-grid">
+
+        <button class="message-card" aria-expanded="false" type="button">
+          <span class="card-icon">✈️</span>
+          <span class="card-title">لما توصلي السعودية</span>
+          <span class="card-hint">رسالة الحمد لله على السلامة</span>
+          <span class="message-content">
+            الحمد لله على سلامتك يا قلبي. يمكن المكان الجديد
+            يحسّسك بالغربة بالبداية، وهذا طبيعي. خذي أيامك
+            على مهلك، وتعرّفي على تفاصيل المكان خطوة خطوة.
+            بتمنى تكون بدايتك مليانة خير وراحة وأخبار حلوة.
+            ودعواتي إلك ما بتغيب، وبفرح لما أعرف إنك مرتاحة
+            ومبسوطة. الله يفتحها بوجهك وين ما تكوني. 🤍
+          </span>
+        </button>
+
+        <button class="message-card" aria-expanded="false" type="button">
+          <span class="card-icon">🌙</span>
+          <span class="card-title">لما تشتاقي أو يطول الليل</span>
+          <span class="card-hint">خذي نفسًا، واقرئي بهدوء</span>
+          <span class="message-content">
+            يا نسومتي، في ليالٍ بتكون أطول من غيرها،
+            وفي لحظات بنشتاق فيها لأشياء صغيرة أكثر من أي
+            شيء ثاني. إذا مرّ عليك هيك شعور، لا تستعجلي
+            تتخلصي منه ولا تزعلي من قلبك. اشتاقي، واهدئي،
+            وتذكّري إن المسافة بتغيّر المكان، مش قيمة الناس
+            الحلوة بقلوبنا. يا رب يجيك من الطمأنينة نصيب كبير.
+          </span>
+        </button>
+
+        <button class="message-card" aria-expanded="false" type="button">
+          <span class="card-icon">🌷</span>
+          <span class="card-title">لما تتعبي أو تحسي إنك مش قادرة</span>
+          <span class="card-hint">تذكير صغير بقوتك</span>
+          <span class="message-content">
+            مش مطلوب منك تكوني قوية كل يوم، ولا تنجزي كل
+            شيء مرة وحدة. ارتاحي إذا تعبتي، وخذي وقتك إذا
+            احتجتي، وابدئي من جديد لما تقدري. يوم صعب ما
+            بمحي كل اللي عملتيه، والتعب مش دليل ضعف.
+            أنا بتمنى أشوفك مرتاحة قد ما بتمنى أشوفك ناجحة.
+            ارفقي بحالك يا روحي. 🤍
+          </span>
+        </button>
+
+        <button class="message-card" aria-expanded="false" type="button">
+          <span class="card-icon">✨</span>
+          <span class="card-title">لما تحققي إشي كنتِ تتمنيه</span>
+          <span class="card-hint">هاي الرسالة إلك ولإنجازك</span>
+          <span class="message-content">
+            شفتِ؟ تعبك ما راح هدر، وخطواتك الصغيرة وصلتِ
+            فيها لمكان حلو. بدي إياكِ تفرحي بإنجازك من قلبك،
+            وتعطي نفسك حقها من الفخر. إنتِ مش مضطرة تقللي
+            من اللي عملتيه أو تنتظري حدا يحكيلك إنه مهم.
+            أنا بتمنى أسمع أخبارك الحلوة وأفرحلك، وكل نجاح
+            إلك بتمنالك بعده نجاح أجمل. فخورة فيكِ؟ لا،
+            خليني أحكيها صح: إلك كل الحق تفخري بحالك. ♡
+          </span>
+        </button>
+
+        <button class="message-card" aria-expanded="false" type="button">
+          <span class="card-icon">☁️</span>
+          <span class="card-title">لما يكون يومك مش حلو</span>
+          <span class="card-hint">مش كل يوم لازم يكون مثالي</span>
+          <span class="message-content">
+            مش كل يوم رح يكون خفيف، ومش كل شيء رح يمشي
+            مثل ما خططتِ. بس يومك الصعب مش حياتك كلها،
+            واللحظة اللي ضايقتك مش آخر الحكاية. اشربي إشي
+            بتحبيه، ارتاحي شوي، واحكي مع شخص بيريّح قلبك.
+            وإن قدرتِ، اتركي لبكرا فرصة يكون ألطف.
+            الله يهوّن عليكِ كل ما أثقل قلبك يا نسومتي.
+          </span>
+        </button>
+
+        <button class="message-card" aria-expanded="false" type="button">
+          <span class="card-icon">💌</span>
+          <span class="card-title">لما تحتاجي تسمعي كلمة حلوة</span>
+          <span class="card-hint">افتحيها من غير مناسبة</span>
+          <span class="message-content">
+            يا تسنيم، فيكِ أشياء حلوة أكبر من إنك تحصريها
+            بيوم حلو أو صورة حلوة. فيكِ عقلك، وروحك،
+            وطموحك، وتفاصيلك اللي بتخلي إلك حضورك الخاص.
+            بتمنى تظلي تشوفي بحالك الأشياء الحلوة اللي يمكن
+            تنسيها أحيانًا، وتعاملي قلبك باللطف اللي بتعطيه
+            للناس. وجودك إله معنى، وإنتِ بتستاهلي كل خير. 🤍
+          </span>
+        </button>
+
+        <button class="message-card" aria-expanded="false" type="button">
+          <span class="card-icon">🫶</span>
+          <span class="card-title">لما تحتاجي تطمني على اللي بيننا</span>
+          <span class="card-hint">كلام هادي من غير وعود كبيرة</span>
+          <span class="message-content">
+            ما بدي أحمّل الأيام وعود أكبر منها، ولا أحكيلك
+            كلام حلو وبس. اللي بتمناه إننا نضل نختار الصدق،
+            والاحترام، والاهتمام بالتفاصيل الصغيرة. نحكي لما
+            نقدر، ونفهم بعض لما يصير في اختلاف، ونترك
+            للمواقف فرصة تثبت الكلام. بالنسبة إلي، أجمل
+            شعور إنك تكوني مرتاحة، وإنه بيننا مساحة آمنة
+            نكون فيها على طبيعتنا. ♡
+          </span>
+        </button>
+
+        <button class="message-card" aria-expanded="false" type="button">
+          <span class="card-icon">🌼</span>
+          <span class="card-title">لما تنسي قديش إنتِ مميزة</span>
+          <span class="card-hint">تذكير صغير إلك</span>
+          <span class="message-content">
+            لا تقارني بدايتك بنهاية طريق شخص ثاني.
+            إلك وقتك، وطريقتك، والخطوات اللي بتناسبك.
+            مش لازم تثبتي قيمتك بالإنجاز المستمر، ولا تكوني
+            الأفضل بكل شيء حتى تكوني كفاية. خليكِ طموحة،
+            بس خلي قلبك مرتاح كمان. يا رب تشوفي بحالك
+            يومًا بعد يوم إنسانة بتكبر، وبتتعلم، وبتستحق
+            تفرح بكل خطوة قطعتها.
+          </span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- اقتباس هادئ -->
+    <section class="page section">
+      <div class="quote-box">
+        <div class="quote-heart">♡</div>
+        <p>
+          مش كل الأشياء الحلوة لازم تكون قريبة من العين؛
+          في أشياء مكانها بالقلب، وبتضل حلوة مهما تغيّر المكان.
+        </p>
+        <small>إلى نسومتي، في كل مكان جديد بتروحيه</small>
+      </div>
+    </section>
+
+    <!-- الرسالة الختامية -->
+    <section class="page final-section" id="goodbye">
+      <div class="ornament">✦　♡　✦</div>
+      <p class="eyebrow">UNTIL WE MEET AGAIN</p>
+      <h2>إلى أن نلتقي من جديد</h2>
+
+      <p class="final-letter">
+        الأردن بدونك رح تفقد أحلى ما فيها، ورح نشتاق
+        لضحكتك ووجودك بيناتنا.. بس فرحتي فيكِ وبمستقبلك
+        وبنجاحك أكبر بكثير من أي شوق.
+
+        <br><br>
+
+        روحي وعين الله ترعاكِ، وحققي كل أحلامك،
+        وخلي قلبك مطمئن إنك قادرة تتجاوزي الأيام الصعبة
+        وتفرحي بالأيام الحلوة. بتمنى تلاقي بطريقك ناس
+        طيبين، وفرص تليق فيكِ، وأسباب كثيرة تخليكِ تبتسمي.
+
+        <br><br>
+
+        واتذكري دايمًا إن إلك مكانة غالية، وإنه في قلب
+        بتمنى لك الخير من بعيد، وسند بتقدري تحكي معه
+        لما تحتاجي، من غير ما تضطري تشرحي كل شيء.
+
+        <strong>
+          استودعتك الله الذي لا تضيع ودائعه...
+          وبانتظار رجعتك بالسلامة يا عمري. ❤️
+        </strong>
+      </p>
+
+      <div class="final-signature">نسومتي ♡</div>
+      <div class="final-subtitle">MADE WITH LOVE & A LITTLE BIT OF CODE</div>
+
+      <button class="back-top" id="backTop">ارجعي لبداية مساحتك ↑</button>
+    </section>
+  </main>
+
+  <footer class="page footer">
+    <div>بعض الكلمات بتضل معنا، حتى بعد ما نسكّر الصفحة.</div>
+    <div>صُنعت بمحبة، لتكون ذكرى لطيفة كلما احتجتِها <span class="footer-heart">♡</span></div>
+  </footer>
+
+  <!-- اختياري: أضف ملف music.mp3 بجانب index.html -->
+  <div class="music-control">
+    <button class="music-btn" id="musicBtn" type="button" aria-pressed="false">
+      <span id="musicIcon">♫</span>
+      <span id="musicLabel">شغّلي الموسيقى</span>
+    </button>
   </div>
 
-  <button class="music-control" id="musicToggle" type="button">
-    ♫ موسيقى: متوقفة
-  </button>
-
-  <audio id="backgroundMusic" loop preload="none">
-    <!-- أضف ملفًا موسيقيًا تملك حق استخدامه إن رغبت -->
+  <audio id="bgMusic" loop preload="none">
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
   <script>
-    // ================================================
-    // 1. تأثير النجوم
-    // ================================================
-    const canvas = document.getElementById("stars");
-    const ctx = canvas.getContext("2d");
-    let stars = [];
-    let animationFrame;
-    let lastFrame = 0;
+    // نجوم هادئة في الخلفية
+    const stars = document.getElementById("stars");
 
-    function setupStars() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.floor(window.innerWidth * dpr);
-      canvas.height = Math.floor(window.innerHeight * dpr);
-      canvas.style.width = window.innerWidth + "px";
-      canvas.style.height = window.innerHeight + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      const count = Math.min(
-        100,
-        Math.floor(window.innerWidth / 4)
-      );
-
-      stars = Array.from({ length: count }, () => ({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        r: Math.random() * 1.3 + .25,
-        alpha: Math.random() * .6 + .15,
-        speed: Math.random() * .006 + .002
-      }));
+    for (let i = 0; i < 75; i++) {
+      const star = document.createElement("span");
+      star.className = "star";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+      star.style.animationDelay = Math.random() * 4 + "s";
+      star.style.animationDuration = (3 + Math.random() * 4) + "s";
+      const size = (1 + Math.random() * 1.5) + "px";
+      star.style.width = size;
+      star.style.height = size;
+      stars.appendChild(star);
     }
 
-    function drawStars(time) {
-      if (time - lastFrame < 40) {
-        animationFrame = requestAnimationFrame(drawStars);
-        return;
-      }
-      lastFrame = time;
-
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-      stars.forEach(star => {
-        const twinkle = .65 + Math.sin(time * star.speed) * .35;
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-        ctx.fillStyle =
-          `rgba(245, 231, 199, ${star.alpha * twinkle})`;
-        ctx.fill();
-      });
-
-      animationFrame = requestAnimationFrame(drawStars);
-    }
-
-    setupStars();
-    animationFrame = requestAnimationFrame(drawStars);
-
-    window.addEventListener("resize", () => {
-      cancelAnimationFrame(animationFrame);
-      setupStars();
-      animationFrame = requestAnimationFrame(drawStars);
+    // الانتقال إلى الرسائل
+    document.getElementById("enterBtn").addEventListener("click", () => {
+      document.getElementById("letter").scrollIntoView({ behavior: "smooth" });
+      makeHearts(5);
     });
 
-    // ================================================
-    // 2. فتح الرسالة على مراحل
-    // ================================================
-    const openLetter = document.getElementById("openLetter");
-
-    const stages = [
-      "letterSection",
-      "memoriesSection",
-      "quoteSection",
-      "finalSection"
-    ];
-
-    openLetter.addEventListener("click", () => {
-      stages.forEach(id => {
-        document.getElementById(id).classList.remove("hidden");
-      });
-
-      openLetter.textContent = "رسالتكِ صارت مفتوحة ♡";
-      openLetter.disabled = true;
-      openLetter.style.opacity = ".7";
-
-      document.getElementById("letterSection").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    });
-
-    // ================================================
-    // 3. البطاقات التفاعلية
-    // ================================================
-    document.querySelectorAll(".memory-card").forEach(card => {
+    // فتح وإغلاق الرسائل
+    document.querySelectorAll(".message-card").forEach(card => {
       card.addEventListener("click", () => {
-        const isOpen = card.classList.toggle("open");
-        card.setAttribute("aria-expanded", String(isOpen));
+        const wasOpen = card.getAttribute("aria-expanded") === "true";
+
+        // إغلاق بقية الرسائل حتى تبقى القراءة مرتبة
+        document.querySelectorAll(".message-card").forEach(other => {
+          other.setAttribute("aria-expanded", "false");
+        });
+
+        card.setAttribute("aria-expanded", String(!wasOpen));
+
+        if (!wasOpen) {
+          makeHearts(2);
+        }
       });
     });
 
-    // ================================================
-    // 4. الموسيقى الاختيارية
-    // ================================================
-    const music = document.getElementById("backgroundMusic");
-    const musicToggle = document.getElementById("musicToggle");
+    // قلوب لطيفة تظهر عند التفاعل
+    function makeHearts(amount = 3) {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    musicToggle.addEventListener("click", async () => {
+      for (let i = 0; i < amount; i++) {
+        const heart = document.createElement("span");
+        heart.className = "floating-heart";
+        heart.textContent = Math.random() > 0.5 ? "♡" : "♥";
+        heart.style.left = (10 + Math.random() * 80) + "%";
+        heart.style.fontSize = (12 + Math.random() * 15) + "px";
+        heart.style.animationDelay = (Math.random() * .7) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4500);
+      }
+    }
+
+    // موسيقى اختيارية؛ لن تعمل إلا بعد ضغط الزر
+    const music = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    const musicLabel = document.getElementById("musicLabel");
+    const musicIcon = document.getElementById("musicIcon");
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 3000);
+    }
+
+    musicBtn.addEventListener("click", async () => {
       if (music.paused) {
         try {
           await music.play();
-          musicToggle.textContent = "♫ إيقاف الموسيقى";
+          musicLabel.textContent = "إيقاف الموسيقى";
+          musicIcon.textContent = "♫";
+          musicBtn.setAttribute("aria-pressed", "true");
         } catch (error) {
-          musicToggle.textContent = "أضيفي ملف music.mp3 أولًا";
+          showToast("أضيفي ملف music.mp3 بجانب index.html لتشغيل الموسيقى.");
         }
       } else {
         music.pause();
-        musicToggle.textContent = "♫ موسيقى: متوقفة";
+        musicLabel.textContent = "شغّلي الموسيقى";
+        musicIcon.textContent = "♫";
+        musicBtn.setAttribute("aria-pressed", "false");
       }
     });
 
-    // ================================================
-    // 5. إعادة التجربة من البداية
-    // ================================================
-    document.getElementById("replay").addEventListener("click", () => {
-      stages.forEach(id => {
-        document.getElementById(id).classList.add("hidden");
-      });
+    music.addEventListener("error", () => {
+      // لا تظهر رسالة إلا إذا حاولت تشغيل ملف غير موجود
+    });
 
-      document.querySelectorAll(".memory-card").forEach(card => {
-        card.classList.remove("open");
-        card.setAttribute("aria-expanded", "false");
-      });
-
-      openLetter.disabled = false;
-      openLetter.style.opacity = "1";
-      openLetter.textContent = "افتحي رسالتكِ ♡";
-
+    // العودة إلى البداية
+    document.getElementById("backTop").addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   </script>
